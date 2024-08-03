@@ -32,16 +32,16 @@ def userSignup():
     elif re.match(pattern, email) is None:
         flash('正しいメールアドレスの形式ではありません')
     else:
-        uid = uuid.uuid4()
+        id = uuid.uuid4()
         password = hashlib.sha256(password1.encode('utf-8')).hexdigest()
         DBuser = dbConnect.getUser(email)
 
         if DBuser != None:
             flash('既に登録されているようです')
         else:
-            dbConnect.createUser(uid, name, email, password)
-            UserId = str(uid)
-            session['uid'] = UserId
+            dbConnect.createUser(id, name, email, password)
+            UserId = str(id)
+            session['id'] = UserId
             return redirect('/')
     return redirect('/signup')
 
@@ -67,7 +67,7 @@ def userLogin():
             if hashPassword != user["password"]:
                 flash('パスワードが間違っています！')
             else:
-                session['uid'] = user["uid"]
+                session['id'] = user["id"]
                 return redirect('/')
     return redirect('/login')
 
@@ -75,14 +75,15 @@ def userLogin():
 # ログアウト処理
 @app.route('/logout')
 def logout():
+    session.clear()
     return redirect('/login')
 
 
 # チャンネル一覧ページの表示
 @app.route('/')
 def index():
-    uid = session.get("uid")
-    if uid is None:
+    id = session.get("id")
+    if id is None:
         return redirect('/login')
     else:
         return render_template('/index.html')
