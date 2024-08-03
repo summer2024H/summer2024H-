@@ -1,0 +1,21 @@
+{% extends 'registration_base.html' %} {% block title %}
+<title>login</title>
+{% endblock %} {% block body %}
+<div>
+    <form method="post">
+        <h1>ログインページ</h1>
+        <div>
+            <label for="email-input">Email</label>
+            <input type="text" placeholder="Email" name="email" id="email-input" />
+        </div>
+        <div>
+            <label for="password-input">Password</label>
+            <input type="password" placeholder="Password" name="password" id="password-input" />
+        </div>
+        <div>
+            <button>LOGIN</button>
+            <a href="{{ url_for('signup')}}">登録はこちら</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
