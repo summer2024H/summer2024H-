@@ -2,5 +2,15 @@
 <title>home</title>
 {% endblock %} {% block body %}
 <h1>welcome!</h1>
+<form>
+    <label for="movies">チャットルーム作成:</label>
+    <select id="movies" name="movies">
+        {% for movie in movies %}
+
+            <option value="{{ movie['movie_title'] }}">{{ movie['movie_title'] }} - {{ movie['releasedyear'] }} - {{ movie['category'] }}</option> 
+      
+        {% endfor %}
+    </select>
+</form>
 <a href="{{ url_for('logout') }}">サインアウト</a>
 {% endblock %}

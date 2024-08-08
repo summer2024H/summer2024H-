@@ -88,5 +88,17 @@ def index():
     else:
         return render_template('/index.html')
 
+
+#チャットルームの作成
+@app.route('/index.html')
+def add_chatroom():
+    id = session.get('id')
+    if id is None:
+        return redirect('/login')
+    else:
+        movies = dbConnect.getMoviesAll()
+        return render_template('/index.html', movies=movies)
+        
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

@@ -4,6 +4,7 @@ import pymysql
 class DB:
     def getConnection():
         try:
+            #データベースへの接続とカーソルの生成
             conn = pymysql.connect(
             host ="db",
             db ="chatapp",
