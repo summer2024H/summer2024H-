@@ -13,9 +13,7 @@ CREATE TABLE users(
     id VARCHAR(255) PRIMARY KEY, /*idはuuid4によってos固有の世界で一意の数値となる*/
     user_name VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(64) NOT NULL,
-    created_at TIMESTAMP NOT NULL default current_timestamp,
-    updated_at TIMESTAMP NOT NULL default current_timestamp on update current_timestamp
+    password VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE movies(
