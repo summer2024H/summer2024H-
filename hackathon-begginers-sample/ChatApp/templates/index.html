@@ -1,21 +1,6 @@
 {% extends 'base.html' %} {% block title %}
 <title>home</title>
 {% endblock %} {% block body %}
-<<<<<<< HEAD
-<h1>welcome!</h1>
-<form>
-    <label for="movies">チャットルーム作成:</label>
-    <select id="movies" name="movies">
-        {% for movie in movies %}
-
-            <option value="{{ movie['movie_title'] }}">{{ movie['movie_title'] }} - {{ movie['releasedyear'] }} - {{ movie['category'] }}</option> 
-      
-        {% endfor %}
-    </select>
-</form>
-<a href="{{ url_for('logout') }}">サインアウト</a>
-{% endblock %}
-=======
 <div class="main-container">
   <div class="channel-title">
     <h1>チャットルーム一覧</h1>
@@ -75,4 +60,3 @@
   <a href="{{ url_for('logout') }}">サインアウト</a>
 </div>
 {% endblock %}
->>>>>>> origin/ishi/#2
