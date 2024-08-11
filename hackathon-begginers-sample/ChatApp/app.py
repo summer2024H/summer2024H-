@@ -78,15 +78,30 @@ def logout():
     session.clear()
     return redirect('/login')
 
-
-# チャンネル一覧ページの表示
+# 映画ルーム一覧ページの表示
 @app.route('/')
 def index():
     id = session.get("id")
     if id is None:
         return redirect('/login')
     else:
-        return render_template('/index.html')
+        movie_records = dbConnect.getMovieRecords()
+        return render_template('/index.html', movies=movie_records)
+
+# 映画ルームの作成
+@app.route('/', methods=['POST'])
+def addMovieroom():
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    movie_id = request.form.get('movieId')
+    movieroom_record = dbConnect.getMovieRoomRecord(movie_id)
+    if movieroom_record["movie_id"] is None:
+        dbConnect.addMovieRoom(user_id,movie_id)
+        return redirect('/')
+    else:
+        flash('すでに同じ名前の映画ルームが存在しています')
+        return redirect('/')
 
 
 #チャットルームの作成
