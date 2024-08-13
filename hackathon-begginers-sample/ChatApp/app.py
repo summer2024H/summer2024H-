@@ -81,12 +81,16 @@ def logout():
 # 映画ルーム一覧ページの表示
 @app.route('/')
 def index():
-    id = session.get("id")
-    if id is None:
+    user_id = session.get("id")
+    if user_id is None:
         return redirect('/login')
     else:
         movie_records = dbConnect.getMovieRecords()
-        return render_template('/index.html', movies=movie_records)
+        movieroom_records = dbConnect.getMovieroomsAll()
+        if movieroom_records:
+            movieroom_records.reverse()
+        print("app.py",movieroom_records)
+        return render_template('index.html', movies=movie_records, movierooms=movieroom_records, user_id=user_id)
 
 # 映画ルームの作成
 @app.route('/', methods=['POST'])
@@ -96,12 +100,32 @@ def addMovieroom():
         return redirect('/login')
     movie_id = request.form.get('movieId')
     movieroom_record = dbConnect.getMovieRoomRecord(movie_id)
-    if movieroom_record["movie_id"] is None:
-        dbConnect.addMovieRoom(user_id,movie_id)
+    print(102,movieroom_record)
+    if movieroom_record:
+        if movieroom_record["movie_id"] is None:
+            dbConnect.addMovieRoom(user_id,movie_id)
+        else:
+            flash('すでに同じ名前の映画ルームが存在しています')
         return redirect('/')
     else:
-        flash('すでに同じ名前の映画ルームが存在しています')
+        flash('タイトルを選択してください')
         return redirect('/')
+
+# 映画ルームの削除
+@app.route('/delete/<cid>')
+def delete_channel(cid):
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    else:
+        movieroom = dbConnect.getMovieRoomRecordsById(cid)
+        if movieroom["user_id"] != user_id:
+            flash(' 映画ルームは作成者のみ削除可能です')
+            return redirect ('/')
+        else:
+            dbConnect.deleteChannel(cid)
+            movierooms = dbConnect.getMovieroomsAll()
+            return redirect('/')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

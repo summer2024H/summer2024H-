@@ -27,6 +27,32 @@ class dbConnect:
         finally:
             cur.close()
 
+    def getMovieroomsAll():
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT m.movie_title,mr.id,mr.user_id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id;"
+            cur.execute(sql)
+            movieroom_records = cur.fetchall()
+            return movieroom_records
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+
+    def getMovieRoomRecordsById(movieroom_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM movierooms WHERE id=%s;"
+            cur.execute(sql, (movieroom_id))
+            movieroom_record = cur.fetchone()
+            return movieroom_record
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+
     def getMovieRecords():
         try:
             # データベースに接続
@@ -62,6 +88,18 @@ class dbConnect:
             cur = conn.cursor()
             sql = "INSERT INTO movierooms (user_id, movie_id) VALUES (%s, %s);"
             cur.execute(sql, (user_id, int(movie_id)))
+            conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+
+    def deleteChannel(movieroom_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "DELETE FROM movierooms WHERE id=%s;"
+            cur.execute(sql, (movieroom_id))
             conn.commit()
         except Exception as e:
             print(e)
