@@ -4,7 +4,14 @@
 <div class="main-container">
   <div class="channel-title">
     <h1>チャットルーム一覧</h1>
-    <p>チャットルーム</p>
+    <ul>
+      {% for room in movierooms_all %}
+          <li>{{ room.movie_title }} {{ room.id }} </li>
+      　<form action="{{ url_for('delete_movieroom', mr_id=room.id ) }}" method="POST" style="display:inline;">
+            <button type="submit" value="{{room.id}}" name="mr_id">削除</button>
+        </form>
+      {% endfor %}
+    </ul>
   </div>
   <div class="add-channel">
     <div class="add-channel-header">

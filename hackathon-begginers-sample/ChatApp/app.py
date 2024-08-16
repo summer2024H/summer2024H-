@@ -78,8 +78,8 @@ def logout():
     session.clear()
     return redirect('/login')
 
-# 映画ルーム一覧ページの表示
-@app.route('/')
+# デフォルト映画情報の表示
+@app.route('/movierooms')
 def index():
     id = session.get("id")
     if id is None:
@@ -88,32 +88,42 @@ def index():
         movie_records = dbConnect.getMovieRecords()
         return render_template('/index.html', movies=movie_records)
 
-# 映画ルームの作成
-@app.route('/', methods=['POST'])
-def addMovieroom():
+#映画ルーム一覧ページの表示
+@app.route('/', methods=['GET','POST'])
+def show_Movieroom():
     user_id = session.get("id")
     if user_id is None:
         return redirect('/login')
-    movie_id = request.form.get('movieId')
-    movieroom_record = dbConnect.getMovieRoomRecord(movie_id)
-    if movieroom_record["movie_id"] is None:
-        dbConnect.addMovieRoom(user_id,movie_id)
-        return redirect('/')
-    else:
-        flash('すでに同じ名前の映画ルームが存在しています')
-        return redirect('/')
-
-
-#チャットルームの作成
-@app.route('/index.html')
-def add_chatroom():
-    id = session.get('id')
-    if id is None:
+    if request.method == 'GET':
+        movierooms_all = dbConnect.showMovieRoomAll()
+        if movierooms_all:
+            movierooms_all.reverse()
+        return render_template('/index.html',movierooms_all = movierooms_all,user_id = user_id)
+    if request.method == 'POST':
+        movie_id = request.form.get('movieId')
+        movieroom_record = dbConnect.getMovieRoomRecord(movie_id)
+        if movieroom_record["movie_id"] is None:
+           dbConnect.addMovieRoom(user_id,movie_id)
+           return redirect('/')
+        else:
+           flash('すでに同じ名前の映画ルームが存在しています')
+           return redirect('/')
+    
+#映画ルームの削除
+@app.route('/delete/<mr_id>',methods=['POST'])
+def delete_movieroom(mr_id):
+    user_id = session.get("id")
+    if user_id is None:
         return redirect('/login')
     else:
-        movies = dbConnect.getMoviesAll()
-        return render_template('/index.html', movies=movies)
-        
+        movieroom = dbConnect.getMovieRoomBYId(mr_id)
+        print('app.py137',mr_id)
+        if movieroom["user_id"] != user_id:
+            flash('チャットルームは作成者のみ削除可能です')
+            return redirect('/')
+        else:
+            dbConnect.deleteMovieRoom(mr_id)
+            return redirect('/')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
