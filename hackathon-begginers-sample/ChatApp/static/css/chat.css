@@ -4,7 +4,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f5f5dc; /* 背景色を設定 */
-    background-image: url('background-chat.png'); /* 背景画像を設定 */
+    background-image: url('../img/background-chat.png'); /* 背景画像を設定 */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

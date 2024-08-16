@@ -1,7 +1,7 @@
 /* ログイン画面のCSS */
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    background-image: url(background-login.png);
+    background-image: url(../img/background-login.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
