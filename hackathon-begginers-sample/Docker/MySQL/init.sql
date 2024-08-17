@@ -13,9 +13,7 @@ CREATE TABLE users(
     id VARCHAR(255) PRIMARY KEY, /*idはuuid4によってos固有の世界で一意の数値となる*/
     user_name VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(64) NOT NULL,
-    created_at TIMESTAMP NOT NULL default current_timestamp,
-    updated_at TIMESTAMP NOT NULL default current_timestamp on update current_timestamp
+    password VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE movies(
@@ -25,6 +23,12 @@ CREATE TABLE movies(
     category VARCHAR(10) NOT NULL
 );
 
+/* CREATE TABLE movierooms(
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL REFERENCES users(id),
+    movie_id INTEGER NOT NULL REFERENCES movies(id)
+); */
+
 CREATE TABLE movierooms(
     id SERIAL PRIMARY KEY,
     user_id VARCHAR(255) NOT NULL REFERENCES users(id),
@@ -33,12 +37,25 @@ CREATE TABLE movierooms(
 
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
-    user_id VARCHAR(255) NOT NULL REFERENCES users(id), 
-    movierooms_id INTEGER NOT NULL REFERENCES movierooms(id) ON DELETE CASCADE,
+    user_id VARCHAR(255) NOT NULL, 
+    movierooms_id BIGINT UNSIGNED NOT NULL,
     message TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL default current_timestamp,
-    updated_at TIMESTAMP NOT NULL default current_timestamp on update current_timestamp
+    updated_at TIMESTAMP NOT NULL default current_timestamp on update current_timestamp,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (movierooms_id) REFERENCES movierooms(id) ON DELETE CASCADE
 );
+
+/* CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    movierooms_id BIGINT UNSIGNED NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_movierooms_id FOREIGN KEY (movierooms_id) REFERENCES movierooms(id) ON DELETE CASCADE
+); */
 
 CREATE TABLE message_reactions(
     user_id VARCHAR(255) NOT NULL REFERENCES users(id), 
