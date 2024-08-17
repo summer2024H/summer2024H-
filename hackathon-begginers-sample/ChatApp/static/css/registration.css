@@ -89,3 +89,12 @@ input::placeholder {
   font-size: 18px;
   color: white;
 }
+
+.flashes {
+  padding-inline-start: 0;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: rgb(198, 8, 8);
+  list-style: none;
+  font-weight: bold;
+}

@@ -6,7 +6,16 @@
         <div class="title">
             <h1>会　　員　　登　　録</h1>
         </div>
-        <div class="registration-button-container">            
+        <div class="registration-button-container"> 
+            <div>
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <ul class="flashes">
+                  {% for message in messages %}
+                  <li>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+            </div>           
+            {% endif %} {% endwith %} 
             <div>
                 <label for="signup-name-input">お名前</label>
                 <input type="text" placeholder="Name" name="name" id="signup-name-input" />
@@ -23,7 +32,7 @@
                 <label for="signup-password-confirmation-input">パスワードをもう一度</label>
                 <input type="password" placeholder="password" name="password2" id="signup-password-confirmation-input" />
             </div>
-            <div> 
+            <div>
                 <button class="registration_button">登　録</button>
                 <a href="{{ url_for('login') }}"></a>
             </div>
