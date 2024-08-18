@@ -33,7 +33,7 @@
   font-family: 'Noto Sans JP', sans-serif;
 } 
 
-.form-group {
+.form-groupsg {
   width: 100vw;
   min-height: 100vh;
   align-items: center;
@@ -42,7 +42,7 @@
   flex-wrap: wrap;
 }
 
-.form-group label {
+.form-groupsg label {
   width: 150px;
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 15px;
@@ -50,7 +50,7 @@
   color: #8B5E3C;
 }
 
-.form-group input {
+.form-groupsg input {
   display: flex;
   width: 100%;
   padding: 10px;
@@ -88,4 +88,13 @@ input::placeholder {
   font-weight: bold;
   font-size: 18px;
   color: white;
+}
+
+.flashes {
+  padding-inline-start: 0;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: rgb(198, 8, 8);
+  list-style: none;
+  font-weight: bold;
 }

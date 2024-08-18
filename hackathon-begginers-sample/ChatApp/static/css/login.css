@@ -1,5 +1,5 @@
 /* ログイン画面のCSS */
-body {
+.loginbg {
     font-family: 'Noto Sans JP', sans-serif;
     background-image: url(../img/background-login.png);
     background-size: contain;
@@ -15,7 +15,7 @@ body {
 
 .login-container {
     position: fixed;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -60%);
     border-radius: 10px;
@@ -24,11 +24,12 @@ body {
     width: 100%;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.form-grouplg {
+    margin-top: 4px;
+    margin-bottom: 8px;
 }
 
-.form-group label {
+.form-grouplg label {
     display: block;
     margin-bottom: 5px;
     font-family: 'Noto Sans JP', sans-serif;
@@ -37,8 +38,8 @@ body {
     font-weight: bold;
 }
 
-.form-group input {
-    width: 100%;
+.form-grouplg input {
+    width: 97%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -70,3 +71,13 @@ body {
     cursor: pointer;
     order: 2;
 }
+
+.flashes {
+    padding-inline-start: 0;
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: rgb(198, 8, 8);
+    list-style: none;
+    font-weight: bold;
+  }
