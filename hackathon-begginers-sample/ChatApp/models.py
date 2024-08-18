@@ -73,9 +73,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.id,m.movie_title,mr.movie_id FROM movies AS m LEFT JOIN movierooms AS mr ON m.id = mr.movie_id WHERE m.id='%s';"
+            sql = "SELECT m.id,m.movie_title,mr.movie_id FROM movies AS m LEFT JOIN movierooms AS mr ON m.id = mr.movie_id WHERE m.id=%s;"
             cur.execute(sql,int((movie_id)))
-            movieroom_record = cur.fetchone()
+            movieroom_record= cur.fetchone()
             return movieroom_record
         except Exception as e:
             print(e)
@@ -92,7 +92,7 @@ class dbConnect:
         except Exception as e:
             print(e)
         finally:
-            cur.close()
+            cur.close() 
 
     def deleteChannel(movieroom_id):
         try:
@@ -105,3 +105,57 @@ class dbConnect:
             print(e)
         finally:
             cur.close()
+
+    def getMovieRoomRecordsByName(movieroom_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT m.movie_title,mr.id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id WHERE mr.id = %s;"
+            cur.execute(sql, (movieroom_id))
+            movieroom_record = cur.fetchone()
+            return movieroom_record
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+
+    def getMessageAll(movieroom_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT m.id,m.message,m.created_at,u.id,u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE movierooms_id =%s;"
+            cur.execute(sql,(movieroom_id))
+            messages = cur.fetchall()
+            print('models.py129',movieroom_id) 
+            print('models.py130',messages)
+            return messages
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+
+    def createMessage(user_id,movieroom_id,message):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO messages(user_id,movierooms_id,message) VALUES(%s,%s,%s)"
+            cur.execute(sql,(user_id,movieroom_id,message))
+            conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+
+    def deleteMessage(message_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "DELETE FROM messages WHERE id=%s;"
+            cur.execute(sql,(message_id))
+            conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+
+        

@@ -89,7 +89,7 @@ def index():
         movieroom_records = dbConnect.getMovieroomsAll()
         if movieroom_records:
             movieroom_records.reverse()
-        print("app.py",movieroom_records)
+        print("app.py92",movieroom_records)
         return render_template('index.html', movies=movie_records, movierooms=movieroom_records, user_id=user_id)
 
 # 映画ルームの作成
@@ -124,8 +124,60 @@ def delete_channel(cid):
             return redirect ('/')
         else:
             dbConnect.deleteChannel(cid)
-            movierooms = dbConnect.getMovieroomsAll()
             return redirect('/')
+        
+#メッセージ投稿画面の表示
+@app.route('/chat/<cid>')
+def home(cid):
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    else: 
+       cid= cid
+       movieroom_record = dbConnect.getMovieRoomRecordsByName(cid)
+       message_records = dbConnect.getMessageAll(cid)
+       print('app.py138',movieroom_record)
+       print('app.py139',message_records)
+       return render_template('chat.html',messages = message_records,movieroom= movieroom_record) 
+
+#メッセージの投稿
+@app.route('/message',methods=['POST'])
+def addMessage():
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+
+    else:
+        message = request.form.get('message')
+        movieroom_id = request.form.get('movieroom_id')
+
+    # if not message or message.isspace():
+    #     flash('メッセージが空です。') 
+    if message:
+        dbConnect.createMessage(user_id,movieroom_id,message)
+
+
+    # else:
+    #     dbConnect.createMessage(user_id, cid, message)
+       
+    return redirect('/chat/{movieroom_id}'.format(movieroom_id = movieroom_id))
+
+#メッセージの削除
+@app.route('/delete_message',methods =['POST'])
+def delete_message():
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    
+    message_id = request.form.get('message_id')
+    movieroom_id = request.form.get('movieroom_id')
+    if message_id:
+        dbConnect.deleteMessage(message_id)
+
+    return redirect('/chat/{movieroom_id}'.format(movieroom_id=movieroom_id)) 
+    
+
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

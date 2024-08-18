@@ -4,7 +4,7 @@ const loadMovieRooms = () => {
   movierooms.forEach((movieroom) => {
     const a_title = document.createElement('a');
     const li = document.createElement('li');
-    const movieroomURL = `/detail/${movieroom.id}`;
+    const movieroomURL = `/chat/${movieroom.id}`;
     a_title.innerText = movieroom.movie_title;
     a_title.setAttribute('href', movieroomURL);
     li.appendChild(a_title);
