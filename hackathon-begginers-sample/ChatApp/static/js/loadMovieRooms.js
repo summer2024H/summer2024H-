@@ -5,6 +5,7 @@ const loadMovieRooms = () => {
     const a_title = document.createElement('a');
     const li = document.createElement('li');
     const movieroomURL = `/detail/${movieroom.id}`;
+
     a_title.innerText = movieroom.movie_title;
     a_title.setAttribute('href', movieroomURL);
     li.appendChild(a_title);
@@ -21,6 +22,11 @@ const loadMovieRooms = () => {
       li.appendChild(a_button);
       a_button.appendChild(deleteButton);
     }
+    /* const imgElement = document.getElementById(movieroom.id);
+    if (imgElement) {
+      // imgElementが存在する場合のみsrcを変更
+      imgElement.src = `/static/img/${movieroom.id}.jpg`; // 新しい画像パスを指定
+    } */
   });
 };
 

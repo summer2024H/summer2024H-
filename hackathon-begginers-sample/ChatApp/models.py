@@ -31,7 +31,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.movie_title,mr.id,mr.user_id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id;"
+            sql = "SELECT m.id,m.movie_title,mr.id,mr.user_id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id;"
             cur.execute(sql)
             movieroom_records = cur.fetchall()
             return movieroom_records

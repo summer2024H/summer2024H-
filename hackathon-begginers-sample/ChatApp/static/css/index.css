@@ -5,7 +5,7 @@ body {
 }
 
 .background {
-  background-image: url("/static/img/background-select.png");
+  background-image: url('/static/img/background-select.png');
   background-repeat: no-repeat;
   background-size: 100%;
   width: 100%;
@@ -14,13 +14,15 @@ body {
   margin: 0;
 }
 
-.room-title { /* タイトル部分 */
+.room-title {
+  /* タイトル部分 */
   height: auto;
   margin: 0 auto 4vh auto;
   padding-top: 7vh;
 }
 
-.room-title h1 { /* チャットルームの文字 */
+.room-title h1 {
+  /* チャットルームの文字 */
   text-align: center;
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
@@ -33,7 +35,8 @@ body {
   margin: 0 auto;
 }
 
-.room-container { /* ルーム画像5枚 */
+.room-container {
+  /* ルーム画像5枚 */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -46,7 +49,8 @@ body {
   width: 15%;
 }
 
-.add-channel-confirmation-button { /* 作成ボックス */
+.add-channel-confirmation-button {
+  /* 作成ボックス */
   background-color: #5bc0de;
   text-align: center;
   text-decoration: none;
@@ -61,12 +65,13 @@ body {
   color: white;
 }
 
-.add-channel { /* チャットルーム作成 */
+.add-channel {
+  /* チャットルーム作成 */
   display: flex;
   justify-content: right;
   /* position: relative; */
   /* width: 100%; */
-  position: absolute:
+  position: absolute;
   /* position: fixed; */
   display: inline-block;
   text-align: center;
@@ -81,9 +86,10 @@ h4 {
   margin: 0 auto;
 }
 
-.add-title h4 { /*チャットルーム作成の文字*/
+.add-title h4 {
+  /*チャットルーム作成の文字*/
   text-align: center;
-  margin: 0;  
+  margin: 0;
   width: 100%;
   height: auto;
   /* left: 20px; */
@@ -93,7 +99,6 @@ h4 {
   /* color: #777; */
   /* margin: 0 auto auto 5vh; */
   /* padding-top: 7vh; */
-
 }
 
 .add {
@@ -116,8 +121,9 @@ h4 {
   color: white;
 }
 
-.index_button { /* ログアウトボタン */
-  background-color: #536ad9; /* 緑 #59d953 */  /* 紺#536ad9 */
+.index_button {
+  /* ログアウトボタン */
+  background-color: #536ad9; /* 緑 #59d953 */ /* 紺#536ad9 */
   /* text-align: auto; */
   text-decoration: none;
   width: 120px;
@@ -130,4 +136,3 @@ h4 {
   font-size: 18px;
   color: white;
 }
-
