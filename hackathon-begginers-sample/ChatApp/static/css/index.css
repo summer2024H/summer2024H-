@@ -1,0 +1,133 @@
+/* チャンネル一覧画面のCSS */
+
+body {
+  margin: 0;
+}
+
+.background {
+  background-image: url("/static/img/background-select.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.room-title { /* タイトル部分 */
+  height: auto;
+  margin: 0 auto 4vh auto;
+  padding-top: 7vh;
+}
+
+.room-title h1 { /* チャットルームの文字 */
+  text-align: center;
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 6.5vw;
+  color: #777;
+}
+
+.room {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.room-container { /* ルーム画像5枚 */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-right: 2px;
+  padding-top: 18%;
+  gap: 1%;
+}
+
+.room-container img {
+  width: 15%;
+}
+
+.add-channel-confirmation-button { /* 作成ボックス */
+  background-color: #5bc0de;
+  text-align: center;
+  text-decoration: none;
+  width: 120px;
+  padding: 5px 20px 5px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+.add-channel { /* チャットルーム作成 */
+  display: flex;
+  justify-content: right;
+  /* position: relative; */
+  /* width: 100%; */
+  position: absolute:
+  /* position: fixed; */
+  display: inline-block;
+  text-align: center;
+  /* top: 60%; */
+  height: auto;
+  color: black; /* #777 */
+  margin: 0 auto 39vh auto;
+  padding: 0 10vh 0 0;
+}
+
+h4 {
+  margin: 0 auto;
+}
+
+.add-title h4 { /*チャットルーム作成の文字*/
+  text-align: center;
+  margin: 0;  
+  width: 100%;
+  height: auto;
+  /* left: 20px; */
+  /* padding-top: 1vh; */
+  font-family: 'Noto Sans JP', sans-serif;
+  /* padding-left: -15%; */
+  /* color: #777; */
+  /* margin: 0 auto auto 5vh; */
+  /* padding-top: 7vh; */
+
+}
+
+.add {
+  width: 70%;
+  margin: 0 auto 4vh auto;
+}
+
+.add-button {
+  background-color: #5bc0de;
+  text-align: center;
+  text-decoration: none;
+  /* width: 20%; */
+  padding: 3px 15px 2px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+.index_button { /* ログアウトボタン */
+  background-color: #536ad9; /* 緑 #59d953 */  /* 紺#536ad9 */
+  /* text-align: auto; */
+  text-decoration: none;
+  width: 120px;
+  padding: 5px 20px 5px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
