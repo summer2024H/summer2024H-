@@ -1,133 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン画面</title>
-    <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            font-family: Arial, sans-serif;
-        }
-        .background {
-            background-image: url('img/background-login.png');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .login-container {
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 1300px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-70%);
-            margin: 10px 50px 20px;
-        }
-        .form-group {
-            display: flex;
-            align-items: center;
-            margin-top: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        .form-group label {
-            width: 150px;
-            margin-right: 20px;
-            text-align: right;
-            font-family: 'Noto Sans JP', sans-serif;
-            font-size: 21px;
-            font-weight: bold;
-            color: #8B5E3C;
-        }
-        .form-group input {
-            width: 100%;
-            max-width: calc(100% - 170px);
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .button-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            width: 100%;
-        }
-        .login-container button, .login-container a {
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-            width: 120px;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Noto Sans JP', sans-serif;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .register-button {
-            background-color: #d9534f;
-            color: white;
-        }
-        .login-button {
-            background-color: #5bc0de;
-            color: white;
-        }
-        input::placeholder {
-            font-family: 'Noto Sans JP', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            color: #B6B6B6;
-        }
-
-        @media (max-width: 768px) {
-            .login-container {
-                width: 90%;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                width: 95%;
-                padding: 10px;
-            }
-        }
-    </style>
+    <title>ログイン</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="background">
-        <section class="login-container">
-            <form action="/login" method="POST">
-                <div class="form-group">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" id="email" name="email" placeholder="メールアドレスを入力" required aria-required="true" aria-label="メールアドレス">
-                </div>
-                <div class="form-group">
-                    <label for="password">パスワード</label>
-                    <input type="password" id="password" name="password" placeholder="パスワードを入力" required aria-required="true" aria-label="パスワード">
-                </div>
-                <div class="button-group">
-                    <a href="{{ url_for('signup')}}" class="register-button">新規登録</a>
-                    <button type="submit" class="login-button">ログイン</button>
-                </div>
-            </form>
-        </section>
-    </main>
+    <div class="login-container">
+        <form method="post" class="login-form">
+            <div class="form-group">
+                <label for="email-input">メールアドレス</label>
+                <input type="text" placeholder="Email" name="email" id="email-input" />
+            </div>
+            <div class="form-group">
+                <label for="password-input">パスワード</label>
+                <input type="password" placeholder="Password" name="password" id="password-input" />
+            </div>
+            <div class="form-actions">
+                <a href="{{ url_for('signup')}}" class="signup-link">新規登録</a>
+                <button type="submit" class="login-button">ログイン</button>
+            </div>
+        </form>
+    </div>
 </body>
-</html>
