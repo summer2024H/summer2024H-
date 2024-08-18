@@ -1,62 +1,67 @@
 {% extends 'base.html' %} {% block title %}
-<title>home</title>
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en"> -->
+<!-- <head> -->
+  <!-- <meta charset="UTF-8"> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <title>チャットルーム一覧画面</title>
+  <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> -->
+<!-- </head> -->
 {% endblock %} {% block body %}
-<div class="main-container">
-  <div class="channel-title">
+<body>
+<div class="background">
+  <div class="room-title">
     <h1>チャットルーム一覧</h1>
-    <p>チャットルーム</p>
   </div>
-  <div class="add-channel">
-    <div class="add-channel-header">
-      <label>チャットルーム作成</label>
+  <div>
+  <div class="main-container">
+    <div class="room"> <!-- ルーム画像中央寄せ -->
+      <div class="room-container">
+        <img src="/static/img/screen_1.jpg" id="screen_1" alt="">
+        <img src="/static/img/screen_2.jpg" alt="">
+        <img src="/static/img/screen_3.jpg" alt="">
+        <img src="/static/img/screen_4.jpg" alt="">
+        <img src="/static/img/screen_5.jpg" alt="">      
+      </div>
     </div>
-    <form
-      name="addChannelForm"
-      class="add-channel-body"
-      action="/"
-      method="POST"
-    >
-      <div class="add-channel">
-        <label for="channel-form-select">タイトル</label>
-        <div>
-          <select class="channel-form-select" name="movieId">
-            <option value="" selected hidden>選択してください</option>
-            {% for movie in movies %}
-            <option value="{{ movie.id }}">{{ movie.movie_title }}</option>
-            {% endfor %}
-          </select>
-        </div>
+  <div class="add-channel"> <!-- 画面左 -->
+    <div class="add-title"> 
+      <!-- <div class="add"> -->
+        <h4>チャットルーム</h4>
+        <h4>作成</h4>
+      <!-- </div> -->
+    </div>
+    <form id="imageForm">
+      <select id="imageSelect" onchange="changeTerm()">
+        <option value="">タイトルを選択</option>
+        <option value="/static/img/Parasite.jpg">パラサイト</option>
+        <option value="/static/img/screen_2.jpg">ゴッドファーザー</option>
+        <option value="/static/img/screen_3.jpg">ローマの休日</option>
+        <option value="/static/img/screen_4.jpg">タイタニック</option>
+        <option value="/static/img/screen_5.jpg">英国王のスピーチ</option>
+      </select>      
+      <div>
+        <button 
+          type="submit" 
+          value="submit" 
+          class="add-button">作成</button>
       </div>
-      <!--       <div class="add-channel">
-        <label for="release-year-form-select">公開年</label>
-        <div>
-          <select class="release-year-form-select" name="releaseYear">
-            <option value="" selected hidden>選択してください</option>
-            {% for movie in movies %}
-            <option value="{{ movie.releasedyear }}">
-              {{ movie.releasedyear }}
-            </option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="add-channel">
-        <label for="category-form-select">ジャンル</label>
-        <div>
-          <select class="category-form-select" name="category">
-            <option value="" selected hidden>選択してください</option>
-            {% for movie in movies %}
-            <option value="{{ movie.category }}">{{ movie.category }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div> -->
-      <button id="add-channel-confirmation-button">作成</button>
+
     </form>
+    <div id="imageContainer">
+      <!-- <img id="image" src="/static/img/Parasite.jpg" alt=""> -->
+      <!-- <img id="image" src="/static/img/The Godfather.jpg" alt=""> -->
+      <!-- <img id="image" src="/static/img/Titanic.jpg" alt=""> -->
+      <!-- <img id="image" src="/static/img/The King's Speech.jpg" alt=""> -->
+    </div>
+    <script src="script.js"></script>
+
   </div>
-  <div id="footer">
-    <p id="footer-text">PLAUDERN FROM RARETECH</p>
+  <div> 
+    <a href="{{ url_for('logout') }}"  class="index_button">ログアウト</a>
   </div>
-  <a href="{{ url_for('logout') }}">サインアウト</a>
 </div>
+<script src="../js/add-room.js"></script>
+
+</body>
 {% endblock %}
