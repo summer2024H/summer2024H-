@@ -72,10 +72,6 @@ label {
   padding-left: 125px;
 }
 
-.add-channel-content {
-  gap: 20px;
-}
-
 .add-title {
   font-size: 20px; /* タイトルのフォントサイズを設定 */
   margin-bottom: 10px;
@@ -100,4 +96,21 @@ label {
   border-radius: 5px; /* ボタンの角を丸くする */
   cursor: pointer; /* カーソルをポインターに変更 */
   margin-top: 10px;
+}
+
+.section-logout-button {
+  padding: 150px;
+  text-align: right;
+}
+
+.index-button {
+  padding: 5px; /* ボタン内のスペースを設定 */
+  width: 100px;
+  background-color: #ff0000; /* ボタンの背景色 */
+  color: #fff; /* ボタンの文字色 */
+  border: none; /* ボーダーを取り除く */
+  border-radius: 5px; /* ボタンの角を丸くする */
+  cursor: pointer; /* カーソルをポインターに変更 */
+  margin-top: 10px;
+  align: center;
 }
