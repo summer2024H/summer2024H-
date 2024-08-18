@@ -113,13 +113,10 @@ def addMovieroom():
 @app.route('/delete/<cid>')
 def delete_channel(cid):
     user_id = session.get("id")
-    print(116,user_id)
     if user_id is None:
         return redirect('/login')
     else:
         movieroom = dbConnect.getMovieRoomRecordsById(cid)
-        print(121,cid)
-        print(122,movieroom)
         if movieroom["user_id"] != user_id:
             flash(' 映画ルームは作成者のみ削除可能です')
             return redirect ('/')

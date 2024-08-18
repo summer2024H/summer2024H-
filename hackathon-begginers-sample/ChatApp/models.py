@@ -110,7 +110,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.movie_title,mr.movie_id,mr.id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id WHERE mr.movie_id=%s;"
+            sql = "SELECT m.movie_title,mr.id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id WHERE mr.id=%s;"
             cur.execute(sql, (movieroom_id))
             movieroom_record = cur.fetchone()
             return movieroom_record
@@ -123,10 +123,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.id,m.message,m.created_at,u.id,u.user_name,mr.movie_id FROM messages AS m JOIN users AS u ON m.user_id = u.id  JOIN movierooms AS mr ON m.movieroom_id = mr.id WHERE movie_id = %s "
+            sql = "SELECT m.id,m.message,m.created_at,u.id,u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE movierooms_id = %s "
             cur.execute(sql, (movieroom_id))
             messages = cur.fetchall()
-            print(messages)
             return messages
         except Exception as e:
             print(e)

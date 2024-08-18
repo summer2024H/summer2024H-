@@ -83,7 +83,6 @@
           </div>
         </div>
       </section>
-      <ul class="channel-box"></ul>
       <div>
         <a href="{{ url_for('logout') }}" class="index_button">ログアウト</a>
       </div>
@@ -96,7 +95,6 @@
   const movierooms = JSON.parse('{{ movierooms|tojson }}');
   // prettier-ignore
   const user_id = JSON.parse('{{ user_id|tojson }}');
-  console.log(movierooms);
 </script>
 <script
   src="{{url_for('static',filename='js/loadMovieRooms.js')}}"
