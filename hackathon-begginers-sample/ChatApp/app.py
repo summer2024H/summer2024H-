@@ -128,13 +128,17 @@ def delete_channel(cid):
 @app.route('/detail/<cid>')
 def detail(cid):
     user_id = session.get("id")
+    print(f"現在のユーザーID: {user_id}")  # ログに出力
     if user_id is None:
         return redirect('/login')
     else:
         cid = cid
         movieroom_record = dbConnect.getMovieRoomRecordByName(cid)
         message_records = dbConnect.getMessageAll(cid)
-        return render_template('detail.html', movieroom=movieroom_record, messages=message_records)
+
+        for message in message_records:
+            print(f"メッセージ投稿者ID: {message['user_id']}")  # ここでメッセージの投稿者IDを確認する
+        return render_template('detail.html', movieroom=movieroom_record, messages=message_records, user_id=user_id)
 
 # メッセージの投稿
 @app.route('/message', methods=["POST"])
@@ -150,6 +154,32 @@ def add_message():
         dbConnect.createMessage(user_id,movieroom_id,message)
 
     return redirect('/detail/{movieroom_id}'.format(movieroom_id = movieroom_id))
+
+# メッセージの削除 追加部分
+@app.route('/delete_message', methods=["POST"])
+def delete_message():
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    
+    message_id = request.form.get('message_id')
+    message = dbConnect.getMessageById(message_id)
+    
+     # 追加
+    if not message:
+        flash('メッセージが見つかりませんでした')
+        return redirect(request.referrer)
+    
+    room_id = message['movierooms_id']
+    room = dbConnect.getMovieRoomRecordsById(room_id)
+    
+    if message['user_id'] == user_id or room['user_id'] == user_id:
+        dbConnect.deleteMessageById(message_id)
+        flash('メッセージを削除しました')
+    else:
+        flash('削除する権限がありません')
+    
+    return redirect(request.referrer)   
 
 
 if __name__ == '__main__':

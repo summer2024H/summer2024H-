@@ -110,7 +110,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.movie_title,mr.id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id WHERE mr.id=%s;"
+            sql = "SELECT m.movie_title, mr.id, mr.user_id FROM movies AS m JOIN movierooms AS mr ON m.id = mr.movie_id WHERE mr.id=%s;"
             cur.execute(sql, (movieroom_id))
             movieroom_record = cur.fetchone()
             return movieroom_record
@@ -123,9 +123,10 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.id,m.message,m.created_at,u.id,u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE movierooms_id = %s "
+            sql = "SELECT m.id, m.message, m.created_at, u.id as user_id, u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE movierooms_id = %s "
             cur.execute(sql, (movieroom_id))
             messages = cur.fetchall()
+            print(f"取得したメッセージデータ: {messages}")  # 取得したデータをデバッグ表示
             return messages
         except Exception as e:
             print(e)
@@ -143,3 +144,31 @@ class dbConnect:
             print(e)
         finally:
             cur.close()
+    
+    # メッセージをIDで取得
+    def getMessageById(message_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM messages WHERE id=%s;"
+            cur.execute(sql, (message_id,))
+            message = cur.fetchone()
+            return message
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+    
+    # 削除機能　追加部分
+    def deleteMessageById(message_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "DELETE FROM messages WHERE id=%s;"
+            cur.execute(sql, (message_id,))
+            conn.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            cur.close()
+            
