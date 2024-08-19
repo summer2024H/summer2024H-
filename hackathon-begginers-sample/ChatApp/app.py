@@ -89,10 +89,7 @@ def index():
         movieroom_records = dbConnect.getMovieroomsAll()
         if movieroom_records:
             movieroom_records.reverse()
-<<<<<<< HEAD
         print("app.py92",movieroom_records)
-=======
->>>>>>> origin/feature/ishi
         return render_template('index.html', movies=movie_records, movierooms=movieroom_records, user_id=user_id)
 
 # 映画ルームの作成
