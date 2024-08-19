@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+label {
+  text-align: left;
+}
+
+.page-wrapper {
+  width: 80%;
+  height: 100vh; /* 画面の高さにフィットさせる */
+  margin: 0 auto;
+}
+
+.background {
+  background-image: url('/static/img/background-select.png');
+  background-size: 100% 100%; /* 画像を縦横ともに画面サイズに合わせる */
+  width: 100%;
+  height: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.channel-title-text {
+  padding: 70px;
+  font-size: 36px; /* 文字サイズを24ピクセルに設定 */
+}
+
+.section-center {
+  padding-top: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.search {
+  width: 25%;
+}
+
+.articles {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 40px 5px;
+}
+
+.article-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.add-channel {
+  width: 25%;
+  padding-left: 125px;
+}
+
+.add-title {
+  font-size: 20px; /* タイトルのフォントサイズを設定 */
+  margin-bottom: 10px;
+}
+
+.add-channel-body {
+  width: 70%;
+}
+
+.channel-form-select {
+  padding: 5px; /* セレクトボックスの内側にスペースを追加 */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.add-button {
+  padding: 5px; /* ボタン内のスペースを設定 */
+  width: 50%;
+  background-color: #007bff; /* ボタンの背景色 */
+  color: #fff; /* ボタンの文字色 */
+  border: none; /* ボーダーを取り除く */
+  border-radius: 5px; /* ボタンの角を丸くする */
+  cursor: pointer; /* カーソルをポインターに変更 */
+  margin-top: 10px;
+}
+
+.section-logout-button {
+  padding: 150px;
+  text-align: right;
+}
+
+.index-button {
+  padding: 5px; /* ボタン内のスペースを設定 */
+  width: 100px;
+  background-color: #ff0000; /* ボタンの背景色 */
+  color: #fff; /* ボタンの文字色 */
+  border: none; /* ボーダーを取り除く */
+  border-radius: 5px; /* ボタンの角を丸くする */
+  cursor: pointer; /* カーソルをポインターに変更 */
+  margin-top: 10px;
+  align: center;
+}

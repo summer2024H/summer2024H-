@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block title %}
+<title>detail</title>
+{% endblock %} {% block body %}
+<div>
+  <h1>{{ movieroom.movie_title }}</h1>
+</div>
+<div>
+  {% if messages %} {% for message in messages %}
+  <div>
+    <div>
+      <a>{{ message.user_name }}</a>
+      <a>{{ message.message }}</a>
+      <a>{{ message.created_at }}</a>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div id="no-message"><p>まだメッセージがありません</p></div>
+  {% endif %}
+</div>
+<div>
+  <form action="/message" method="POST">
+    <textarea name="message" autofocus></textarea>
+    <input type="hidden" name="movieroom_id" value="{{ movieroom.id}}" />
+    <button type="submit">送信</button>
+  </form>
+</div>
+<div>
+  <a href="/"><button>戻る</button></a>
+</div>
+{% endblock %}

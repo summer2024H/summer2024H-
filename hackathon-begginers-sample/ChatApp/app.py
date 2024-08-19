@@ -89,7 +89,10 @@ def index():
         movieroom_records = dbConnect.getMovieroomsAll()
         if movieroom_records:
             movieroom_records.reverse()
+<<<<<<< HEAD
         print("app.py92",movieroom_records)
+=======
+>>>>>>> origin/feature/ishi
         return render_template('index.html', movies=movie_records, movierooms=movieroom_records, user_id=user_id)
 
 # 映画ルームの作成
@@ -100,7 +103,6 @@ def addMovieroom():
         return redirect('/login')
     movie_id = request.form.get('movieId')
     movieroom_record = dbConnect.getMovieRoomRecord(movie_id)
-    print(102,movieroom_record)
     if movieroom_record:
         if movieroom_record["movie_id"] is None:
             dbConnect.addMovieRoom(user_id,movie_id)
@@ -181,3 +183,5 @@ def delete_message():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
+
+# ユーザーのセッションを確認するif文は、elseに分岐をしなくてもよいのでは？？

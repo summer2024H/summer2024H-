@@ -1,0 +1,108 @@
+/* チャット画面のCSS */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5dc; /* 背景色を設定 */
+    background-image: url('../img/background-chat.png'); /* 背景画像を設定 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.chat-room {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    margin: -10px 210px 0;
+}
+
+#exitBtn {
+    background-color: #d9534f;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    top: 0;
+    right: 0;
+}
+
+#exitBtn:hover {
+    background-color: #c9302c;
+}
+
+.message-area {
+    flex: 1;
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto; /* 中央に配置 */
+    overflow-y: auto;
+    max-height: calc(100vh - 200px); /* 高さを調整して入力エリアを考慮 */
+    display: flex;
+    flex-direction: column;
+    width: 69%; /* 横幅を調整 */
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.sent {
+    background-color: #d1f7c4;
+    align-self: flex-end;
+}
+
+.received {
+    background-color: #ffffff;
+    align-self: flex-start;
+}
+
+.input-area {
+    display: flex;
+    align-items: center;
+    margin: auto; /* 中央に配置 */
+    margin-bottom: 20px;
+    width: 70%; /* 横幅を調整 */
+
+}
+
+#messageInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 10px 120px;
+    font-size: 16px;
+}
+
+#sendBtn {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 120px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#sendBtn:hover {
+    background-color: #31b0d5;
+}
