@@ -4,7 +4,7 @@ const loadMovieRooms = () => {
     /* const a_title = document.createElement('a'); */
     const a_img = document.createElement('a');
     const li = document.createElement('li');
-    const movieroomURL = `/detail/${movieroom['mr.id']}`;
+    const movieroomURL = `/chat/${movieroom['mr.id']}`;
 
     // movieroomのmovie_idと同じ属性と同じ属性値を持つ要素の画像パスを変更する
     const imgElement = document.getElementById(movieroom.id);

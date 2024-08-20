@@ -133,11 +133,11 @@ def home(cid):
         return redirect('/login')
     else: 
        cid= cid
-       movieroom_record = dbConnect.getMovieRoomRecordsByName(cid)
+       movieroom_record = dbConnect.getMovieRoomRecordByName(cid)
        message_records = dbConnect.getMessageAll(cid)
        print('app.py138',movieroom_record)
        print('app.py139',message_records)
-       return render_template('chat.html',messages = message_records,movieroom= movieroom_record) 
+       return render_template('chat.html',messages = message_records,movieroom= movieroom_record,user_id=user_id) 
 
 #メッセージの投稿
 @app.route('/message',methods=['POST'])
@@ -149,10 +149,13 @@ def addMessage():
     else:
         message = request.form.get('message')
         movieroom_id = request.form.get('movieroom_id')
+        print('app.py152',message)
+        print('app.py151',movieroom_id)
 
     # if not message or message.isspace():
     #     flash('メッセージが空です。') 
     if message:
+        print('app.py158',message)
         dbConnect.createMessage(user_id,movieroom_id,message)
 
 

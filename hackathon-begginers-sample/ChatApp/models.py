@@ -123,9 +123,10 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.id,m.message,m.created_at,u.id,u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE movierooms_id = %s "
+            sql ="SELECT m.id,m.message,m.created_at,u.id,u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE m.movierooms_id = %s"
             cur.execute(sql, (movieroom_id))
             messages = cur.fetchall()
+            print('models.py129',messages)
             return messages
         except Exception as e:
             print(e)
@@ -136,8 +137,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO messages(user_id, movierooms_id, message) VALUES(%s, %s, %s)"
-            cur.execute(sql, (user_id,movieroom_id,message))
+            sql = "INSERT INTO messages(user_id, movierooms_id, message) VALUES(%s, %s, %s);"
+            cur.execute(sql,(user_id,movieroom_id,message))
+            print('models.py142',type(movieroom_id))
             conn.commit()
         except Exception as e:
             print(e)
