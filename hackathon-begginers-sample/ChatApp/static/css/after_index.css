@@ -104,13 +104,14 @@ label {
 }
 
 .index-button {
-  padding: 5px; /* ボタン内のスペースを設定 */
+  height: 100px;
+  padding: 5px;
   width: 100px;
-  background-color: #ff0000; /* ボタンの背景色 */
-  color: #fff; /* ボタンの文字色 */
-  border: none; /* ボーダーを取り除く */
-  border-radius: 5px; /* ボタンの角を丸くする */
-  cursor: pointer; /* カーソルをポインターに変更 */
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
   margin-top: 10px;
-  align: center;
+  border: 3px solid #fff;
 }
