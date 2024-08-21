@@ -173,9 +173,9 @@ def delete_message():
     
     message_id = request.form.get('message_id')
     movieroom_id = request.form.get('movieroom_id')
-    if message_id:
+    if message_id is not None:
         dbConnect.deleteMessage(message_id)
-
+        
     return redirect('/chat/{movieroom_id}'.format(movieroom_id=movieroom_id)) 
     
 

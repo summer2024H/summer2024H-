@@ -123,7 +123,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql ="SELECT m.id,m.message,m.created_at,u.id,u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE m.movierooms_id = %s"
+            sql ="SELECT m.id,m.message,m.created_at,u.id,u.user_name FROM messages AS m JOIN users AS u ON m.user_id = u.id WHERE m.movierooms_id = %s ORDER BY m.created_at"
             cur.execute(sql, (movieroom_id))
             messages = cur.fetchall()
             print('models.py129',messages)
