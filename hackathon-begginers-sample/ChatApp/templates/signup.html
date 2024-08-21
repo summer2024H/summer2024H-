@@ -2,10 +2,10 @@
 <title>新規登録画面</title>
 {% endblock %} {% block body %}
 <div class="background">
+    <div class="title">
+        <h1>会　　員　　登　　録</h1>
+    </div>
     <form class="form-group" method="post">
-        <div class="title">
-            <h1>会　　員　　登　　録</h1>
-        </div>
         <div class="registration-button-container">
             {% with messages = get_flashed_messages() %} {% if messages %}
             <ul class="flashes">

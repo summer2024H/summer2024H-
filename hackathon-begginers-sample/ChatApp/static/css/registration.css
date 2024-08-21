@@ -1,16 +1,18 @@
 /* 新規登録画面のCSS */
 
 .background {
-  background-image: url(/static/img/background-registration.png);
-  /* background-color: rgba(94, 84, 84, 0.8); */
-  background-position: relative;
-  background-repeat: no-repeat;
+  background-image: url(/static/img/background-registration.png) ;
   background-size: contain;
-  width: auto;
-  height: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   display: flex;
-  /* align-items: center; */ */
-  padding: 100%;
+  justify-content: center;
+  align-items: flex-start; /* 上部に配置 */
+  height: 100vh;
+  margin: 0;
+  position: fixed;
+  overflow: hidden;
 }
 
 .title {
@@ -19,18 +21,23 @@
   font-size: 18px;
   font-weight: bold;
   color: #777;
-  padding-left: 29%;
-  padding-top: 2%;
+  position: fixed;
+  top: 5vh;
+  left: 40%;
+  right: 40%;
 }
 
 .registration-button-container {
-  width: 500px;
-  margin: 0;
+  width: 600px;
+  margin: 0px;
   display: inline-block;
   text-align: left;
   padding: 100px;
   cursor: pointer;
   font-family: 'Noto Sans JP', sans-serif;
+  padding-left: 32%;
+  padding-top: 16%;
+  position: fixed;
 } 
 
 .form-group {
@@ -40,12 +47,13 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  float: left;
 }
 
 .form-group label {
   width: 150px;
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
   color: #8B5E3C;
 }
@@ -92,9 +100,10 @@ input::placeholder {
 
 .flashes {
   padding-inline-start: 0;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 8px;
   color: rgb(198, 8, 8);
   list-style: none;
   font-weight: bold;
+  margin-bottom: 8px;
 }
