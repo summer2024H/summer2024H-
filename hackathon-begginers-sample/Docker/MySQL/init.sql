@@ -69,7 +69,7 @@ CREATE TABLE reactions(
 );
 
 INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(1,'ローマの休日','1953年','恋愛');
-INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(2,'ゴッドファーザー','1972年','その他');
-INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(3,'タイタニック','1997年','恋愛');
-INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(4,'英国王のスピーチ','2011年','その他');
-INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(5,'パラサイト','2019年','その他');
+INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(2,'カサブランカ','1942年','その他');
+INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(3,'素晴らしき哉、人生','1946年','恋愛');
+INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(4,'東京物語','1953年','ドラマ');
+INSERT INTO movies(id, movie_title, releasedyear, category ) VALUES(5,'裏窓','1953年','サスペンス');
