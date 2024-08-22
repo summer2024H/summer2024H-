@@ -44,7 +44,7 @@ h1 {
 }
 
 #exitBtn {
-    background-color: #d9534f;
+    background-color: #ff4b00;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -58,7 +58,7 @@ h1 {
 }
 
 #exitBtn:hover {
-    background-color: #c9302c;
+    background-color: #ff7135;
 }
 
 .message-area {
@@ -113,8 +113,8 @@ h1 {
     order: 1;
     float: right;
     color: #fff;
-    background: #13178E;
-    border: 2px solid #13178E;
+    background: #418edf;
+    border: 2px solid #418edf;
     font-size: 20px;
     width: 400px;
     border-radius: 30px 30px 0px 30px;
@@ -127,7 +127,7 @@ h1 {
     float: left;
     color: #333;
     background: #fff;
-    border: 2px solid #13178E;
+    border: 2px solid #418edf;
     font-size: 20px;
     width: 400px;
     border-radius: 30px 30px 30px 0px;
