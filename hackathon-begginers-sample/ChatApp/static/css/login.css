@@ -1,0 +1,83 @@
+/* ログイン画面のCSS */
+.loginbg {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-image: url(../img/background-login.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に配置 */
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    position: fixed;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    border-radius: 10px;
+    padding: 40px 40px;
+    max-width: 700px;
+    width: 100%;
+}
+
+.form-grouplg {
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.form-grouplg label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #8B5E3C;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.form-grouplg input {
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup-link {
+    display: inline-block;
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    order: 1;
+}
+
+.login-button {
+    background-color: #008cba;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    order: 2;
+}
+
+.flashes {
+    padding-inline-start: 0;
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: rgb(198, 8, 8);
+    list-style: none;
+    font-weight: bold;
+  }

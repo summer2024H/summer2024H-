@@ -78,15 +78,110 @@ def logout():
     session.clear()
     return redirect('/login')
 
-
-# チャンネル一覧ページの表示
+# 映画ルーム一覧ページの表示
 @app.route('/')
 def index():
-    id = session.get("id")
-    if id is None:
+    user_id = session.get("id")
+    if user_id is None:
         return redirect('/login')
     else:
-        return render_template('/index.html')
+        movie_records = dbConnect.getMovieRecords()
+        movieroom_records = dbConnect.getMovieroomsAll()
+        if movieroom_records:
+            movieroom_records.reverse()
+        print("app.py92",movieroom_records)
+        return render_template('index.html', movies=movie_records, movierooms=movieroom_records, user_id=user_id)
+
+# 映画ルームの作成
+@app.route('/', methods=['POST'])
+def addMovieroom():
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    movie_id = request.form.get('movieId')
+    movieroom_record = dbConnect.getMovieRoomRecord(movie_id)
+    if movieroom_record:
+        if movieroom_record["movie_id"] is None:
+            dbConnect.addMovieRoom(user_id,movie_id)
+        else:
+            flash('すでに同じ名前の映画ルームが存在しています')
+        return redirect('/')
+    else:
+        flash('タイトルを選択してください')
+        return redirect('/')
+
+# 映画ルームの削除
+@app.route('/delete/<cid>')
+def delete_channel(cid):
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    else:
+        movieroom = dbConnect.getMovieRoomRecordsById(cid)
+        if movieroom["user_id"] != user_id:
+            flash(' 映画ルームは作成者のみ削除可能です')
+            return redirect ('/')
+        else:
+            dbConnect.deleteChannel(cid)
+            return redirect('/')
+        
+#メッセージ投稿画面の表示
+@app.route('/chat/<cid>')
+def home(cid):
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    else: 
+       cid= cid
+       movieroom_record = dbConnect.getMovieRoomRecordByName(cid)
+       message_records = dbConnect.getMessageAll(cid)
+       print('app.py138',movieroom_record)
+       print('app.py139',message_records)
+       return render_template('chat.html',messages = message_records,movieroom= movieroom_record,user_id=user_id) 
+
+#メッセージの投稿
+@app.route('/message',methods=['POST'])
+def addMessage():
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+
+    else:
+        message = request.form.get('message')
+        movieroom_id = request.form.get('movieroom_id')
+        print('app.py152',message)
+        print('app.py151',movieroom_id)
+
+    # if not message or message.isspace():
+    #     flash('メッセージが空です。') 
+    if message:
+        print('app.py158',message)
+        dbConnect.createMessage(user_id,movieroom_id,message)
+
+
+    # else:
+    #     dbConnect.createMessage(user_id, cid, message)
+       
+    return redirect('/chat/{movieroom_id}'.format(movieroom_id = movieroom_id))
+
+#メッセージの削除
+@app.route('/delete_message',methods =['POST'])
+def delete_message():
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+    
+    message_id = request.form.get('message_id')
+    movieroom_id = request.form.get('movieroom_id')
+    if message_id is not None:
+        dbConnect.deleteMessage(message_id)
+        
+    return redirect('/chat/{movieroom_id}'.format(movieroom_id=movieroom_id)) 
+    
+
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
+
+# ユーザーのセッションを確認するif文は、elseに分岐をしなくてもよいのでは？？

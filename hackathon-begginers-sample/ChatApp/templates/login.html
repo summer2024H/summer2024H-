@@ -1,21 +1,31 @@
 {% extends 'registration_base.html' %} {% block title %}
-<title>login</title>
+<title>ログイン</title>
 {% endblock %} {% block body %}
-<div>
-    <form method="post">
-        <h1>ログインページ</h1>
+<div class="loginbg">
+    <div class="login-container">
         <div>
-            <label for="email-input">Email</label>
-            <input type="text" placeholder="Email" name="email" id="email-input" />
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <ul class="flashes">
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %} {% endwith %}
         </div>
-        <div>
-            <label for="password-input">Password</label>
-            <input type="password" placeholder="Password" name="password" id="password-input" />
-        </div>
-        <div>
-            <button>LOGIN</button>
-            <a href="{{ url_for('signup')}}">登録はこちら</a>
-        </div>
-    </form>
+        <form method="post" class="login-form">
+            <div class="form-grouplg">
+                <label for="email-input">メールアドレス</label>
+                <input type="text" placeholder="Email" name="email" id="email-input" />
+            </div>
+            <div class="form-grouplg">
+                <label for="password-input">パスワード</label>
+                <input type="password" placeholder="Password" name="password" id="password-input" />
+            </div>
+            <div class="form-actions">
+                <a href="{{ url_for('signup')}}" class="signup-link">新規登録</a>
+                <button type="submit" class="login-button">ログイン</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

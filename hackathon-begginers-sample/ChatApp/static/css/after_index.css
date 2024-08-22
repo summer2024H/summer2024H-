@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+label {
+  text-align: left;
+}
+
+.page-wrapper {
+  width: 80%;
+  height: 100vh; /* 画面の高さにフィットさせる */
+  margin: 0 auto;
+}
+
+.background {
+  background-image: url('/static/img/background-select.png');
+  background-size: 100% 100%; /* 画像を縦横ともに画面サイズに合わせる */
+  width: 100%;
+  height: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.channel-title-text {
+  padding: 70px;
+  font-size: 36px; /* 文字サイズを24ピクセルに設定 */
+}
+
+.section-center {
+  padding-top: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.search {
+  width: 25%;
+}
+
+.articles {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 40px 5px;
+}
+
+.article-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.article-image-sub {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.add-channel {
+  width: 25%;
+  padding-left: 125px;
+}
+
+.add-title {
+  font-size: 20px; /* タイトルのフォントサイズを設定 */
+  margin-bottom: 10px;
+}
+
+.add-channel-body {
+  width: 70%;
+}
+
+.channel-form-select {
+  padding: 5px; /* セレクトボックスの内側にスペースを追加 */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.add-button {
+  padding: 5px; /* ボタン内のスペースを設定 */
+  width: 50%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  height: 40px;
+}
+.add-button:hover {
+  background-color: #3695fa;
+}
+
+.section-logout-button {
+  padding-right: 60px;
+  padding-top: 124px;
+  text-align: right;
+}
+
+.index-button {
+  padding: 5px;
+  width: 170px;
+  background-color: #007356;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  border: 3px solid #fff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.index-button:hover {
+  background-color: #039772;
+}
+
+.index-button::before {
+  content: url(/static/img/logout.png);
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+#article_6 {
+  padding-left: 32px;
+  width: 200px;
+  height: 100%;
+  position: relative;
+  bottom: 215px;
+}
+
+.article_6-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  bottom: 90px;
+}

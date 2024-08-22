@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block title %}
+<title>チャットルーム</title>
+<link rel="stylesheet" type="text/css" href="../static/css/chat.css">
+{% endblock %} {% block body %}
+<div>
+<h1>{{ movieroom.movie_title }}</h1>
+</div>
+<div class="chat-room">
+  <div class="talk-area">
+      <div class="header">
+          <a href="{{ url_for('index') }}" id="exitBtn" aria-label="チャットルームを退出">退室</a>
+      </div>
+      <div class="message-area" id="messageArea">
+          <!-- メッセージがここに表示されます -->
+          <div>
+            {% if messages %}
+            {% for message in messages %}
+            {% if message['u.id'] == user_id %}
+            <div class="my-messages">
+              <p class="my-user_name">{{ message.user_name }}</p>
+              <div class="flexbox">
+                <p class="box box-right">{{ message.message }}</p>
+                <p class="my-created_at">{{ message.created_at }}</p>
+              </div>
+              <form action="/delete_message" method="POST">
+                <input type="hidden" value="{{ movieroom.id }}" name="movieroom_id" />
+                <button
+                class="delete-message-button"
+                name="message_id"
+                value="{{ message.id }}">
+                    <ion-icon
+                    
+                    name="trash-bin-outline"
+                    style="color: #122543">削除
+                  </ion-icon>
+                </button>
+              </form>
+            </div>
+            {% else %} 
+            <div class="messages">
+              <p class="user_name">{{ message.user_name }}</p>
+              <div class="flexbox">
+                <p class="box box-left">{{ message.message }}</p>
+                <p class="created_at">{{ message.created_at }}</p>
+              </div>
+            </div>
+            {% endif %} {% endfor %}{% else %}
+            <div id="no-message"><p>まだメッセージがありません</p></div>
+            {% endif %}
+          </div>
+      </div>
+      <form class="input-area" action="/message" method="POST">
+          <textarea id="messageInput" name="message" placeholder="メッセージを入力" aria-label="メッセージを入力" autofocus></textarea>
+          <input type="hidden" name="movieroom_id" value="{{ movieroom.id}}" />
+          <label for="messageInput" class="visually-hidden"></label>
+          <button type="submit" id="sendBtn">送信</button>
+      </form>
+  </div>
+</div>
+{% endblock %}
